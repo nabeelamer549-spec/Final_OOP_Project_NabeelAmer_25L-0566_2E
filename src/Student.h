@@ -13,7 +13,7 @@ class Student : public AcademicEntity
     string email;
 
 public:
-    Student(string nid, string nname, string nemail) : AcademicEntity(nid, nname, nemail)
+    Student(string nid = " ", string nname = " ", string nemail = " ") : AcademicEntity(nid, nname, nemail)
     {
     }
     virtual void displayprofile() = 0;
