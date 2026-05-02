@@ -7,14 +7,20 @@ using namespace std;
 
 class AcademicEntity
 {
+protected:
     string id;
     string name;
     string email;
 
-    AcademicEntity(string nid = " ", string nname = " ", string nemail = " ")
+public:
+    AcademicEntity()
     {
     }
-    virtual void displayProfile() = 0;
+
+    AcademicEntity(string nid, string nname, string nemail)
+    {
+    }
+    virtual void displayprofile() = 0;
 };
 
 #endif
