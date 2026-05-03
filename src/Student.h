@@ -4,9 +4,10 @@
 #include <string>
 #include <iostream>
 #include "AcademicEntity.h"
+#include "DatabaseManager.h"
 using namespace std;
 
-class Student : public AcademicEntity
+class Student : public AcademicEntity, DatabaseManager
 {
     string id;
     string name;

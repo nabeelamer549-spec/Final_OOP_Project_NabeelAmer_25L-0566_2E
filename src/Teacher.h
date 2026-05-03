@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "AcademicEntity.h"
+#include "DatabaseManager.h"
 using namespace std;
 
 class Teacher : public AcademicEntity
