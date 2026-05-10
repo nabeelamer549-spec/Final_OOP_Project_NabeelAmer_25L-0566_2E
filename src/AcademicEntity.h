@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 class AcademicEntity
@@ -13,14 +14,11 @@ protected:
     string email;
 
 public:
-    AcademicEntity()
-    {
-    }
-
-    AcademicEntity(string nid, string nname, string nemail)
-    {
-    }
-    virtual void displayprofile() = 0;
+    AcademicEntity(string nid = " ", string nname = " ", string nemail = " ");
+    virtual ~AcademicEntity();
+    virtual void displayProfile() const = 0;
+    string getId() const;
+    string getName() const;
 };
 
 #endif

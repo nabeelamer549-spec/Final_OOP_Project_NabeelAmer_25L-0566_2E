@@ -7,7 +7,7 @@
 #include "DatabaseManager.h"
 using namespace std;
 
-class Teacher : public AcademicEntity
+class Teacher : public AcademicEntity, DatabaseManager
 {
     string id;
     string name;

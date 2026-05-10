@@ -4,22 +4,24 @@
 #include <string>
 #include <iostream>
 #include "AcademicEntity.h"
-#include "DatabaseManager.h"
+
 using namespace std;
 
-class Student : public AcademicEntity, DatabaseManager
+class Student : public AcademicEntity
 {
+protected:
     string id;
     string name;
     string email;
+    float gpa;
+    string status;
 
 public:
-    Student(string nid = " ", string nname = " ", string nemail = " ") : AcademicEntity(nid, nname, nemail)
-    {
-    }
-    virtual void displayprofile() = 0;
+    Student(string nid = " ", string nname = " ", string nemail = " ", float ngpa = 0.0);
     virtual void calculateGPA() = 0;
-    virtual void viewtranscript() = 0;
+    virtual void viewTranscript() const = 0;
+    virtual void displayProfile() const = 0;
+    virtual ~Student();
 };
 
 #endif

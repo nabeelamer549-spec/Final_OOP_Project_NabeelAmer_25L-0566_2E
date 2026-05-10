@@ -1,9 +1,14 @@
 #include "Student.h"
-#include <string>
 
-Student::Student(string nid = " ", string nname = " ", string nemail = " ")
+Student::Student(string nid, string nname, string nemail, float ngpa) : AcademicEntity(nid, nname, nemail)
 {
     id = nid;
-    nname = name;
-    nemail = email;
+    name = nname;
+    email = nemail;
+    gpa = ngpa;
+    status = "Active";
+}
+
+Student::~Student()
+{
 }
