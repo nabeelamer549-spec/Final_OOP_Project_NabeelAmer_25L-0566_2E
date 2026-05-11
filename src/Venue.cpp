@@ -6,18 +6,5 @@ Venue::Venue(string rid, int cap, bool computers)
     capacity = cap;
     hasComputers = computers;
 }
-
-string Venue::getRoomID() const
-{
-    return roomID;
-}
-
-int Venue::getCapacity() const
-{
-    return capacity;
-}
-
-bool Venue::getHasComputers() const
-{
-    return hasComputers;
-}
+string Venue::getRoomID() const { return roomID; }
+int Venue::getCapacity() const { return capacity; }

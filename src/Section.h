@@ -18,9 +18,8 @@ class Section
 
 public:
     Section(string sid = " ", Course *c = nullptr, Teacher *t = nullptr, Venue *v = nullptr, int slot = 0);
-    string getSectionID() const;
-    Venue *getVenue() const;
     int getTimeSlot() const;
+    Venue *getVenue() const;
 };
 
 #endif
