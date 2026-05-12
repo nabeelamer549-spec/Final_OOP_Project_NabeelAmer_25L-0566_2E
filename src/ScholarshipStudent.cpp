@@ -1,8 +1,7 @@
 #include "ScholarshipStudent.h"
+#include <iostream>
 
-ScholarshipStudent::ScholarshipStudent(string nid, string nname, string nemail, float ngpa) : Student(nid, nname, nemail, ngpa)
-{
-}
+ScholarshipStudent::ScholarshipStudent(string id, string n, string e, float g) : Student(id, n, e, g) {}
 
 void ScholarshipStudent::calculateGPA()
 {
@@ -14,9 +13,5 @@ void ScholarshipStudent::calculateGPA()
 
 void ScholarshipStudent::viewTranscript() const
 {
-}
-
-void ScholarshipStudent::displayProfile() const
-{
-    cout << "ID: " << id << "; Name: " << name << "; GPA: " << gpa << "; Status: " << status << endl;
+    cout << "Scholarship Transcript - ID: " << ID << " Status: " << status << endl;
 }

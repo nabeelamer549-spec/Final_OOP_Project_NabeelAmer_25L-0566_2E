@@ -2,23 +2,17 @@
 #define DATABASEMANAGER_H
 
 #include <string>
-#include <iostream>
+#include <fstream>
+
 using namespace std;
 
 class DatabaseManager
 {
-    string str;
-
 public:
-    DatabaseManager()
-    {
-    }
-    void readfile(string fname)
-    {
-    }
-    void writefile(string fname, string str)
-    {
-    }
+    DatabaseManager();
+    virtual void saveData(string filename);
+    virtual void loadData(string filename);
+    virtual ~DatabaseManager();
 };
 
 #endif

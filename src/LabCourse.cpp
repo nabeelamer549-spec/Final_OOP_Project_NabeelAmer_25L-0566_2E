@@ -1,14 +1,9 @@
 #include "LabCourse.h"
 
-LabCourse::LabCourse(string cid, string tid) : Course(cid, tid)
-{
-}
+LabCourse::LabCourse(string cid, string tid) : Course(cid, tid) {}
 
-void LabCourse::calculateFinalGrade()
-{
-}
+void LabCourse::calculateFinalGrade() {}
 
 int LabCourse::getExamDuration()
 {
     return 0;
-}

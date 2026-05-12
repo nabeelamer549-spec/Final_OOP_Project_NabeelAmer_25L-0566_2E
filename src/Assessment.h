@@ -1,8 +1,6 @@
 #ifndef ASSESSMENT_H
 #define ASSESSMENT_H
 
-using namespace std;
-
 class Assessment
 {
 protected:
@@ -15,5 +13,4 @@ public:
     virtual float getWeightedScore() = 0;
     virtual ~Assessment();
 };
-
 #endif

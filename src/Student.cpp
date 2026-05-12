@@ -1,14 +1,13 @@
 #include "Student.h"
+#include <iostream>
 
-Student::Student(string nid, string nname, string nemail, float ngpa) : AcademicEntity(nid, nname, nemail)
+Student::Student(string id, string n, string e, float g) : AcademicEntity(id, n, e, "Students.txt")
 {
-    id = nid;
-    name = nname;
-    email = nemail;
-    gpa = ngpa;
+    gpa = g;
     status = "Active";
 }
 
-Student::~Student()
+void Student::displayProfile() const
 {
+    cout << "ID: " << ID << "; Name: " << name << "; GPA: " << gpa << "; Status: " << status << endl;
 }

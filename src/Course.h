@@ -1,18 +1,19 @@
 #ifndef COURSE_H
 #define COURSE_H
-
 #include <string>
 #include <vector>
 #include "Student.h"
-
-using namespace std;
+#include "Assessment.h"
 
 class Course
 {
 protected:
-    string courseID;
-    string teacherID;
+    string CourseID;
+    string TeacherID;
     vector<Student *> enrolledStudents;
+    Assessment **assessments;
+    int assessmentCount;
+    int maxAssessments;
 
 public:
     Course(string cid = " ", string tid = " ");
@@ -20,5 +21,4 @@ public:
     virtual int getExamDuration() = 0;
     virtual ~Course();
 };
-
 #endif

@@ -1,9 +1,6 @@
 #ifndef CORECOURSE_H
 #define CORECOURSE_H
-
 #include "Course.h"
-
-using namespace std;
 
 class CoreCourse : public Course
 {
@@ -12,5 +9,4 @@ public:
     void calculateFinalGrade() override;
     int getExamDuration() override;
 };
-
 #endif

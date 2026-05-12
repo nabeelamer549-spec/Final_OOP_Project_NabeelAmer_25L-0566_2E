@@ -1,8 +1,6 @@
 #ifndef VENUE_H
 #define VENUE_H
-
 #include <string>
-
 using namespace std;
 
 class Venue
@@ -12,9 +10,9 @@ class Venue
     bool hasComputers;
 
 public:
-    Venue(string rid = " ", int cap = 0, bool computers = false);
+    Venue(string rid = " ", int cap = 0, bool comp = false);
     string getRoomID() const;
     int getCapacity() const;
+    bool getCompStatus() const;
 };
-
 #endif

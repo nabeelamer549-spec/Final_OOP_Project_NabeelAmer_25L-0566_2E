@@ -1,9 +1,6 @@
 #ifndef ELECTIVECOURSE_H
 #define ELECTIVECOURSE_H
-
 #include "Course.h"
-
-using namespace std;
 
 class ElectiveCourse : public Course
 {
@@ -12,5 +9,4 @@ public:
     void calculateFinalGrade() override;
     int getExamDuration() override;
 };
-
 #endif

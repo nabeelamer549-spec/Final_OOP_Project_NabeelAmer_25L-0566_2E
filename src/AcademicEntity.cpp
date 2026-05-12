@@ -1,22 +1,10 @@
 #include "AcademicEntity.h"
 
-AcademicEntity::AcademicEntity(string nid, string nname, string nemail)
+AcademicEntity::AcademicEntity(string id, string n, string e, string fp)
 {
-    id = nid;
-    name = nname;
-    email = nemail;
+    ID = id;
+    name = n;
+    email = e;
+    file_path = fp;
 }
-
-AcademicEntity::~AcademicEntity()
-{
-}
-
-string AcademicEntity::getId() const
-{
-    return id;
-}
-
-string AcademicEntity::getName() const
-{
-    return name;
-}
+AcademicEntity::~AcademicEntity() {}

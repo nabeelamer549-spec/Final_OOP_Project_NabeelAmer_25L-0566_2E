@@ -1,18 +1,14 @@
 #include "ExchangeStudent.h"
+#include <iostream>
 
-ExchangeStudent::ExchangeStudent(string nid, string nname, string nemail, float ngpa) : Student(nid, nname, nemail, ngpa)
-{
-}
+ExchangeStudent::ExchangeStudent(string id, string n, string e, float g) : Student(id, n, e, g) {}
 
 void ExchangeStudent::calculateGPA()
 {
+    status = (gpa >= 2.0) ? "Pass" : "Fail";
 }
 
 void ExchangeStudent::viewTranscript() const
 {
-}
-
-void ExchangeStudent::displayProfile() const
-{
-    cout << "ID: " << id << "; Name: " << name << "; Type: Exchange (Pass/Fail)" << endl;
+    cout << "Exchange Transcript - ID: " << ID << " Credit: " << status << endl;
 }

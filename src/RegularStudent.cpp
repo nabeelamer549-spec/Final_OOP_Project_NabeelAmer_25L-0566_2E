@@ -1,8 +1,7 @@
 #include "RegularStudent.h"
+#include <iostream>
 
-RegularStudent::RegularStudent(string nid, string nname, string nemail, float ngpa) : Student(nid, nname, nemail, ngpa)
-{
-}
+RegularStudent::RegularStudent(string id, string n, string e, float g) : Student(id, n, e, g) {}
 
 void RegularStudent::calculateGPA()
 {
@@ -10,9 +9,5 @@ void RegularStudent::calculateGPA()
 
 void RegularStudent::viewTranscript() const
 {
-}
-
-void RegularStudent::displayProfile() const
-{
-    cout << "ID: " << id << "; Name: " << name << "; GPA: " << gpa << endl;
+    cout << "Regular Transcript - ID: " << ID << " GPA: " << gpa << endl;
 }
