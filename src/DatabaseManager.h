@@ -1,14 +1,19 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
+
 #include <string>
+#include <vector>
+
 using namespace std;
 
 class DatabaseManager
 {
 public:
     DatabaseManager();
-    virtual void saveData(string filename);
-    virtual void loadData(string filename);
+    void addToFile(string filename, string record);
+    void viewAllRecords(string filename);
+    void clearFile(string filename);
     virtual ~DatabaseManager();
 };
+
 #endif

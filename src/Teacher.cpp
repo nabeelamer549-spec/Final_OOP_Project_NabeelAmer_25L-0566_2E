@@ -20,7 +20,7 @@ Teacher::Teacher(string id, string n, string e, string *c, int s)
 
 void Teacher::displayProfile() const
 {
-    cout << "Teacher Profile - ID: " << ID << " | Name: " << name << " | Email: " << email << endl;
+    cout << "ID: " << ID << " | Name: " << name << " | Email: " << email << endl;
 }
 
 void Teacher::feedback()
