@@ -7,3 +7,4 @@ void LabCourse::calculateFinalGrade() {}
 int LabCourse::getExamDuration()
 {
     return 0;
+}
