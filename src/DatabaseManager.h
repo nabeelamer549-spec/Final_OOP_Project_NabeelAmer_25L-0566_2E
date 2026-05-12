@@ -10,9 +10,12 @@ class DatabaseManager
 {
 public:
     DatabaseManager();
+
     void addToFile(string filename, string record);
     void viewAllRecords(string filename);
     void clearFile(string filename);
+    void performBulkGrading();
+
     virtual ~DatabaseManager();
 };
 

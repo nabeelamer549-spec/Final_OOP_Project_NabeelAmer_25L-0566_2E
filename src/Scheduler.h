@@ -1,18 +1,18 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
+
+#include <string>
 #include <vector>
-#include "Section.h"
-#include "Venue.h"
+
+using namespace std;
 
 class Scheduler
 {
-    vector<Section *> sections;
-    vector<Venue *> venues;
-
 public:
     Scheduler();
-    void assignVenues();
-    void conflictSolver();
+    void detectConflicts(string filename);
+    void validateLabVenue(string courseType, bool hasComputers);
     ~Scheduler();
 };
+
 #endif

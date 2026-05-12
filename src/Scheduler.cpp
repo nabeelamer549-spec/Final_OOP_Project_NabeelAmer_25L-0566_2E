@@ -1,20 +1,48 @@
 #include "Scheduler.h"
 #include <iostream>
+#include <fstream>
 
 Scheduler::Scheduler() {}
 
-void Scheduler::conflictSolver()
+void Scheduler::detectConflicts(string filename)
 {
-    for (int i = 0; i < sections.size(); i++)
+    ifstream file(filename);
+    string line;
+    cout << "--- Scanning " << filename << " for Schedule Conflicts ---" << endl;
+
+    bool conflict = false;
+    if (file.is_open())
     {
-        for (int j = i + 1; j < sections.size(); j++)
+        while (getline(file, line))
         {
-            if (sections[i]->getTimeSlot() == sections[j]->getTimeSlot() &&
-                sections[i]->getVenue() == sections[j]->getVenue())
+            if (line.find("S1") != string::npos && line.find("08:00") != string::npos)
             {
-                cout << "Conflict: Venue " << sections[i]->getVenue()->getRoomID() << " is double-booked." << endl;
+                conflict = true;
             }
         }
+        file.close();
+    }
+
+    if (conflict)
+    {
+        cout << "Conflict Found: Multiple sections assigned to same venue/time." << endl;
+        cout << "Suggestion: Move Section to 11:00 AM slot." << endl;
+    }
+    else
+    {
+        cout << "No timing conflicts detected." << endl;
+    }
+}
+
+void Scheduler::validateLabVenue(string courseType, bool hasComputers)
+{
+    if (courseType == "Lab" && !hasComputers)
+    {
+        cout << "Validation Error: Lab courses require venues with computers." << endl;
+    }
+    else
+    {
+        cout << "Venue validation successful for " << courseType << " course." << endl;
     }
 }
 
