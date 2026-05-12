@@ -1,0 +1,3 @@
+24L-0001|Nabeel|Scholarship|2.5|Probation
+24L-9999|Peer|Exchange|3.8|Pass
+23|Hasaan|123@gmail.com|0.0|Exchange
