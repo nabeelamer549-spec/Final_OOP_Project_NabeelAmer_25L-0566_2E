@@ -1,8 +1,6 @@
 #include <iostream>
-#include "RegularStudent.h"
 #include "ScholarshipStudent.h"
 #include "ExchangeStudent.h"
-#include "CoreCourse.h"
 #include "LabCourse.h"
 #include "Venue.h"
 #include "Exam.h"
@@ -23,32 +21,17 @@ int main()
     ex->viewTranscript();
 
     cout << "\n--- SCENARIO 3: Lab Course Venue Check ---" << endl;
-    LabCourse *programmingLab = new LabCourse("CS1002", "T101");
     Venue *normalRoom = new Venue("L1", 50, false);
-    Venue *computerLab = new Venue("CS-Lab1", 40, true);
+    cout << "Room L1 valid for Lab? " << (normalRoom->getCompStatus() ? "Yes" : "No") << endl;
 
-    cout << "Room L1 valid for Lab? " << (normalRoom->getCompStatus() ? "Yes" : "No (Needs Computers)") << endl;
-    cout << "Room CS-Lab1 valid for Lab? " << (computerLab->getCompStatus() ? "Yes" : "No") << endl;
-
-    cout << "\n--- SCENARIO 4: The 'Big Red Button' (Polymorphic Grading) ---" << endl;
-
-    Exam *e1 = new Exam(45, 50, 50.0);
-    cout << "Weighted Score for Exam: " << e1->getWeightedScore() << "%" << endl;
-
-    cout << "\n--- SCENARIO 5: Teacher Feedback System ---" << endl;
-    string subjects[] = {"OOP", "Calculus"};
-    Teacher *prof = new Teacher("T001", "Dr. Amer", "amer@fast.edu", subjects, 2);
+    cout << "\n--- SCENARIO 4: Teacher System ---" << endl;
+    string subs[] = {"OOP", "Calculus"};
+    Teacher *prof = new Teacher("T001", "Dr. Amer", "amer@fast.edu", subs, 2);
     prof->feedback();
-    cout << "Feedback system initialized for Teacher ID: T001" << endl;
 
-    // Cleanup
     delete scholar;
     delete ex;
-    delete programmingLab;
     delete normalRoom;
-    delete computerLab;
-    delete e1;
     delete prof;
-
     return 0;
 }

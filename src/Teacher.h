@@ -2,30 +2,25 @@
 #define TEACHER_H
 
 #include <string>
-#include <iostream>
 #include "AcademicEntity.h"
 #include "DatabaseManager.h"
+
 using namespace std;
 
-class Teacher : public AcademicEntity, DatabaseManager
+class Teacher : public AcademicEntity, public DatabaseManager
 {
-    string id;
-    string name;
-    string email;
-    float avg;
+private:
     string *courses;
     int size;
+    float avgFeedback;
 
 public:
-    Teacher(string nid = " ", string nname = " ", string nemail = " ", string *ncourses, int nsize = 0) : AcademicEntity(nid, nname, nemail)
-    {
-    }
-    void feedback()
-    {
-    }
-    ~Teacher()
-    {
-    }
+    Teacher(string id = " ", string n = " ", string e = " ", string *c = nullptr, int s = 0);
+
+    void displayProfile() const override;
+
+    void feedback();
+    ~Teacher();
 };
 
 #endif

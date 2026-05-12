@@ -1,6 +1,5 @@
 #ifndef COURSE_H
 #define COURSE_H
-#include <string>
 #include <vector>
 #include "Student.h"
 #include "Assessment.h"
@@ -13,7 +12,6 @@ protected:
     vector<Student *> enrolledStudents;
     Assessment **assessments;
     int assessmentCount;
-    int maxAssessments;
 
 public:
     Course(string cid = " ", string tid = " ");
