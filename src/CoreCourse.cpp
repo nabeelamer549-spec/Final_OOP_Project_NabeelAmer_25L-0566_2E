@@ -1,12 +1,16 @@
 #include "CoreCourse.h"
+#include <iostream>
 
-CoreCourse::CoreCourse(string cid, string tid) : Course(cid, tid) {}
+CoreCourse::CoreCourse(string cid, string title, string tid)
+    : Course(cid, title, tid, "Core") {}
 
-void CoreCourse::calculateFinalGrade()
+void CoreCourse::calcGrade(string studentID)
 {
+    float score = getStudentScore(studentID);
+    cout << "Core Course: " << studentID << " scored " << score << "%" << endl;
 }
 
-int CoreCourse::getExamDuration()
+int CoreCourse::getExamHours()
 {
     return 3;
 }

@@ -1,1 +1,6 @@
-CS1002|OOP|T001|Core
+CS101|Programming Fundamentals|T001|Core
+CS102|Web Development|T002|Elective
+CS103|Data Structures Lab|T001|Lab
+CS104|Database Systems|T003|Core
+CS105|AI Fundamentals|T002|Elective
+CS106|Networks Lab|T003|Lab

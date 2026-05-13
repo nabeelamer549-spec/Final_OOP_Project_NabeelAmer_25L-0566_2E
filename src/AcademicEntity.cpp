@@ -7,4 +7,5 @@ AcademicEntity::AcademicEntity(string id, string n, string e, string fp)
     email = e;
     file_path = fp;
 }
+
 AcademicEntity::~AcademicEntity() {}

@@ -1,0 +1,9 @@
+========================================
+   FAST UNIVERSITY EXAMINATION SCHEDULE
+========================================
+Section | Course | Venue | Time | Duration
+----------------------------------------
+SEC001 | CS101 | V001 | 08:00 | 3 hours
+SEC002 | CS102 | V002 | 10:00 | 2 hours
+SEC004 | CS104 | V001 | 12:00 | 3 hours
+SEC005 | CS105 | V004 | 09:00 | 2 hours

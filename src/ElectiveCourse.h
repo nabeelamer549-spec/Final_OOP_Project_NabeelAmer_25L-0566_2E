@@ -5,8 +5,8 @@
 class ElectiveCourse : public Course
 {
 public:
-    ElectiveCourse(string cid = " ", string tid = " ");
-    void calculateFinalGrade() override;
-    int getExamDuration() override;
+    ElectiveCourse(string cid = "", string title = "", string tid = "");
+    void calcGrade(string studentID) override;
+    int getExamHours() override;
 };
 #endif

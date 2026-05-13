@@ -1,4 +1,5 @@
 #include "Venue.h"
+#include <iostream>
 
 Venue::Venue(string rid, int cap, bool comp)
 {
@@ -7,6 +8,8 @@ Venue::Venue(string rid, int cap, bool comp)
     hasComputers = comp;
 }
 
-string Venue::getRoomID() const { return roomID; }
-int Venue::getCapacity() const { return capacity; }
-bool Venue::getCompStatus() const { return hasComputers; }
+void Venue::show() const
+{
+    cout << "Room: " << roomID << " | Capacity: " << capacity
+         << " | Computers: " << (hasComputers ? "Yes" : "No") << endl;
+}

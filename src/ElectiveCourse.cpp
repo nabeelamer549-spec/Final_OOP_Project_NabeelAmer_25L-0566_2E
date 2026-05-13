@@ -1,10 +1,16 @@
 #include "ElectiveCourse.h"
+#include <iostream>
 
-ElectiveCourse::ElectiveCourse(string cid, string tid) : Course(cid, tid) {}
+ElectiveCourse::ElectiveCourse(string cid, string title, string tid)
+    : Course(cid, title, tid, "Elective") {}
 
-void ElectiveCourse::calculateFinalGrade() {}
+void ElectiveCourse::calcGrade(string studentID)
+{
+    float score = getStudentScore(studentID);
+    cout << "Elective Course: " << studentID << " scored " << score << "%" << endl;
+}
 
-int ElectiveCourse::getExamDuration()
+int ElectiveCourse::getExamHours()
 {
     return 2;
 }

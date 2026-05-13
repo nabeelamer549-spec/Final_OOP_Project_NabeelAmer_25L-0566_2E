@@ -1,25 +1,30 @@
 #ifndef SECTION_H
 #define SECTION_H
-
 #include <string>
-#include "Course.h"
-#include "Teacher.h"
-#include "Venue.h"
-
 using namespace std;
 
 class Section
 {
-    string sectionID;
-    Course *course;
-    Teacher *teacher;
-    Venue *venue;
-    int timeSlot;
+private:
+    string secID;
+    string courseID;
+    string teacherID;
+    string venueID;
+    string timeSlot;
+    string students[100];
+    int studentCount;
 
 public:
-    Section(string sid = " ", Course *c = nullptr, Teacher *t = nullptr, Venue *v = nullptr, int slot = 0);
-    int getTimeSlot() const;
-    Venue *getVenue() const;
-};
+    Section(string sid = "", string cid = "", string tid = "", string vid = "", string time = "");
+    ~Section();
 
+    string getSecID() const { return secID; }
+    string getCourseID() const { return courseID; }
+    string getVenueID() const { return venueID; }
+    string getTime() const { return timeSlot; }
+    void addStudent(string studentID);
+    bool hasStudent(string studentID);
+    int getCount() const { return studentCount; }
+    void display() const;
+};
 #endif

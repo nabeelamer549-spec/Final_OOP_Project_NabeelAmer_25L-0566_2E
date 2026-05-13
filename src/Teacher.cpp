@@ -1,44 +1,126 @@
 #include "Teacher.h"
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 
-Teacher::Teacher(string id, string n, string e, string *c, int s)
-    : AcademicEntity(id, n, e, "Teachers.txt"), DatabaseManager()
+Teacher::Teacher(string id, string n, string e)
+    : AcademicEntity(id, n, e, "Teachers.txt")
 {
-    size = s;
-    avgFeedback = 4.5;
-    if (s > 0 && c != nullptr)
+    ratingCount = 0;
+    avgRating = 0;
+    ratingSum = 0;
+    courseCount = 0;
+
+    ifstream file("Teachers.txt");
+    string line;
+    while (getline(file, line))
     {
-        courses = new string[size];
-        for (int i = 0; i < size; i++)
-            courses[i] = c[i];
+        size_t pos = line.find('|');
+        string tid = line.substr(0, pos);
+
+        if (tid == ID)
+        {
+            string temp = line;
+            for (int i = 0; i < 3; i++)
+            {
+                size_t pipePos = temp.find('|');
+                temp = temp.substr(pipePos + 1);
+            }
+            size_t pipePos = temp.find('|');
+            avgRating = atof(temp.substr(0, pipePos).c_str());
+
+            temp = temp.substr(pipePos + 1);
+            pipePos = temp.find('|');
+            ratingCount = atoi(temp.substr(0, pipePos).c_str());
+
+            ratingSum = avgRating * ratingCount;
+            break;
+        }
+    }
+    file.close();
+}
+
+Teacher::~Teacher() {}
+
+void Teacher::addRating(int r)
+{
+    if (r >= 1 && r <= 5)
+    {
+        if (ratingCount < 100)
+        {
+            ratings[ratingCount] = r;
+        }
+        ratingCount++;
+        ratingSum += r;
+        avgRating = ratingSum / ratingCount;
+
+        saveToFile();
+        cout << "Rating added! New average: " << avgRating << " (from " << ratingCount << " ratings)" << endl;
     }
     else
     {
-        courses = nullptr;
+        cout << "Rating must be 1-5!" << endl;
+    }
+}
+
+float Teacher::getAvgRating() const
+{
+    return avgRating;
+}
+
+void Teacher::addCourse(string courseID)
+{
+    if (courseCount < 20)
+    {
+        coursesTeaching[courseCount] = courseID;
+        courseCount++;
     }
 }
 
 void Teacher::displayProfile() const
 {
-    cout << "ID: " << ID << " | Name: " << name << " | Feedback: " << avgFeedback << endl;
+    cout << "Teacher: " << name << " (" << ID << ")" << endl;
+    cout << "Average Rating: " << avgRating << " (from " << ratingCount << " students)" << endl;
 }
 
-void Teacher::addFeedback(int rating)
+void Teacher::saveToFile()
 {
-    if (rating >= 1 && rating <= 5)
+    string allLines[100];
+    int lineCount = 0;
+
+    ifstream file("Teachers.txt");
+    string line;
+    while (getline(file, line))
     {
-        avgFeedback = (avgFeedback + rating) / 2.0;
-        cout << "Rating saved. Updated average for " << name << ": " << avgFeedback << endl;
+        allLines[lineCount] = line;
+        lineCount++;
     }
-}
+    file.close();
 
-void Teacher::feedback()
-{
-    cout << "Feedback System Active." << endl;
-}
+    ofstream outFile("Teachers.txt");
+    bool updated = false;
 
-Teacher::~Teacher()
-{
-    if (courses != nullptr)
-        delete[] courses;
+    for (int i = 0; i < lineCount; i++)
+    {
+        size_t pos = allLines[i].find('|');
+        string id = allLines[i].substr(0, pos);
+
+        if (id == ID)
+        {
+            outFile << ID << "|" << name << "|" << email << "|"
+                    << avgRating << "|" << ratingCount << "|" << ratingSum << endl;
+            updated = true;
+        }
+        else
+        {
+            outFile << allLines[i] << endl;
+        }
+    }
+
+    if (!updated)
+    {
+        outFile << ID << "|" << name << "|" << email << "|"
+                << avgRating << "|" << ratingCount << "|" << ratingSum << endl;
+    }
+    outFile.close();
 }

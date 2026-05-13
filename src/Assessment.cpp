@@ -6,4 +6,5 @@ Assessment::Assessment(float rs, float ms, float w)
     maxScore = ms;
     weightage = w;
 }
+
 Assessment::~Assessment() {}

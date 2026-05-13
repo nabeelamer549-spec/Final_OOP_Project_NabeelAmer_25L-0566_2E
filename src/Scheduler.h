@@ -1,18 +1,16 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
-
-#include <string>
-#include <vector>
-
-using namespace std;
+#include "DatabaseManager.h"
 
 class Scheduler
 {
-public:
-    Scheduler();
-    void detectConflicts(string filename);
-    void validateLabVenue(string courseType, bool hasComputers);
-    ~Scheduler();
-};
+private:
+    DatabaseManager db;
 
+public:
+    void runAudit();
+    void fixConflicts();
+    void displaySchedule();
+    void saveExamSchedule();
+};
 #endif

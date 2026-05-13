@@ -5,7 +5,7 @@
 class ExchangeStudent : public Student
 {
 public:
-    ExchangeStudent(string id = " ", string n = " ", string e = " ", float g = 0.0);
+    ExchangeStudent(string id = "", string n = "", string e = "", float g = 0.0);
     void calculateGPA() override;
     void viewTranscript() const override;
 };

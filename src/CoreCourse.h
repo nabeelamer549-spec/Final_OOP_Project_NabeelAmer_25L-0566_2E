@@ -5,8 +5,8 @@
 class CoreCourse : public Course
 {
 public:
-    CoreCourse(string cid = " ", string tid = " ");
-    void calculateFinalGrade() override;
-    int getExamDuration() override;
+    CoreCourse(string cid = "", string title = "", string tid = "");
+    void calcGrade(string studentID) override;
+    int getExamHours() override;
 };
 #endif

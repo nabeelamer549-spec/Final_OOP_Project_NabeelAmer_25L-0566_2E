@@ -1,128 +1,277 @@
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <limits>
+#include <cstdlib>
+#include "DatabaseManager.h"
+#include "Scheduler.h"
+#include "Teacher.h"
+#include "RegularStudent.h"
 #include "ScholarshipStudent.h"
 #include "ExchangeStudent.h"
-#include "RegularStudent.h"
-#include "Teacher.h"
-#include "Venue.h"
-#include "Scheduler.h"
+#include "CoreCourse.h"
+#include "ElectiveCourse.h"
+#include "LabCourse.h"
 
 using namespace std;
 
+DatabaseManager db;
+
+void viewRecords();
+void registerStudent();
+void teacherFeedback();
+void gradingSystem();
+void runScheduler();
+void polymorphismDemo();
+
 int main()
 {
-    DatabaseManager db;
-    Scheduler academicOffice;
-    int choice = 0;
+    int choice;
 
-    db.clearFile("Students.txt");
-    db.clearFile("Teachers.txt");
-    db.clearFile("weightages.txt");
-    db.clearFile("Courses.txt");
-    db.clearFile("Venues.txt");
-    db.clearFile("sections.txt");
-    db.clearFile("assessments.txt");
+    cout << "\n========================================" << endl;
+    cout << "   FAST UNIVERSITY MANAGEMENT SYSTEM" << endl;
+    cout << "========================================" << endl;
 
-    db.addToFile("Students.txt", "24L-0001|Nabeel|Scholarship|2.5|Probation");
-    db.addToFile("Students.txt", "24L-9999|Peer|Exchange|3.8|Pass");
-    db.addToFile("Teachers.txt", "T001|Dr. Amer|4.8");
-    db.addToFile("weightages.txt", "Core|50|25|25");
-    db.addToFile("Courses.txt", "CS1002|OOP|T001|Core");
-    db.addToFile("Venues.txt", "L1|50|0");
-    db.addToFile("Venues.txt", "CS-Lab1|40|1");
-    db.addToFile("sections.txt", "S1|CS1002|T001|L1|08:00-11:00");
-    db.addToFile("assessments.txt", "S1|Exam|45|50");
-
-    while (choice != 6)
+    do
     {
-        cout << "\n========================================" << endl;
-        cout << "    FAST ACADEMIC OFFICE SYSTEM (V1)    " << endl;
-        cout << "========================================" << endl;
-        cout << "1. View Database Records (CRUD - Read)" << endl;
-        cout << "2. Register New Student (CRUD - Create)" << endl;
-        cout << "3. The Big Red Button (Polymorphic Grading)" << endl;
-        cout << "4. Run Conflict Solver (Scheduler Logic)" << endl;
-        cout << "5. Teacher Feedback System (Rating/Avg)" << endl;
-        cout << "6. Exit" << endl;
-        cout << "Selection: ";
-
+        cout << "\n1. View Records" << endl;
+        cout << "2. Register Student" << endl;
+        cout << "3. Teacher Feedback" << endl;
+        cout << "4. Big Red Button (Grading)" << endl;
+        cout << "5. Run Scheduler" << endl;
+        cout << "6. Polymorphism Demo" << endl;
+        cout << "7. Exit" << endl;
+        cout << "Choice: ";
         cin >> choice;
 
-        if (cin.fail())
+        switch (choice)
         {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input! Please enter a number between 1 and 6." << endl;
-            continue;
+        case 1:
+            viewRecords();
+            break;
+        case 2:
+            registerStudent();
+            break;
+        case 3:
+            teacherFeedback();
+            break;
+        case 4:
+            gradingSystem();
+            break;
+        case 5:
+            runScheduler();
+            break;
+        case 6:
+            polymorphismDemo();
+            break;
+        case 7:
+            cout << "Goodbye!" << endl;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
         }
-
-        if (choice == 1)
-        {
-            db.viewAllRecords("Students.txt");
-            db.viewAllRecords("Teachers.txt");
-            db.viewAllRecords("sections.txt");
-            db.viewAllRecords("Venues.txt");
-        }
-        else if (choice == 2)
-        {
-            string id, name, email, type;
-            cout << "Enter ID: ";
-            cin >> id;
-            cout << "Enter Name: ";
-            cin >> name;
-            cout << "Enter Email: ";
-            cin >> email;
-            cout << "Enter Type (Regular/Scholarship/Exchange): ";
-            cin >> type;
-
-            if (type != "Regular" && type != "Scholarship" && type != "Exchange")
-            {
-                cout << "Validation Error: Invalid Student Type." << endl;
-            }
-            else
-            {
-                string record = id + "|" + name + "|" + email + "|0.0|" + type;
-                db.addToFile("Students.txt", record);
-                cout << "Student registered successfully." << endl;
-            }
-        }
-        else if (choice == 3)
-        {
-            db.performBulkGrading();
-        }
-        else if (choice == 4)
-        {
-            academicOffice.detectConflicts("sections.txt");
-            academicOffice.validateLabVenue("Lab", false);
-        }
-        else if (choice == 5)
-        {
-            string s[] = {"OOP"};
-            Teacher t("T001", "Dr. Amer", "amer@fast.edu", s, 1);
-            int r;
-            cout << "Submit rating for Dr. Amer (1-5): ";
-            cin >> r;
-            if (cin.fail())
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Error: Rating must be a number." << endl;
-            }
-            else
-            {
-                t.addFeedback(r);
-            }
-        }
-        else if (choice == 6)
-        {
-            cout << "System shutting down. All data persisted to .txt files." << endl;
-        }
-        else
-        {
-            cout << "Invalid selection. Please try again." << endl;
-        }
-    }
+    } while (choice != 7);
 
     return 0;
+}
+
+void viewRecords()
+{
+    int sub;
+    cout << "\n1.Students 2.Teachers 3.Courses 4.Venues 5.Sections 6.Assessments: ";
+    cin >> sub;
+
+    switch (sub)
+    {
+    case 1:
+        db.viewAll("Students.txt");
+        break;
+    case 2:
+        db.viewAll("Teachers.txt");
+        break;
+    case 3:
+        db.viewAll("Courses.txt");
+        break;
+    case 4:
+        db.viewAll("Venues.txt");
+        break;
+    case 5:
+        db.viewAll("sections.txt");
+        break;
+    case 6:
+        db.viewAll("assessments.txt");
+        break;
+    default:
+        cout << "Invalid" << endl;
+    }
+}
+
+void registerStudent()
+{
+    cout << "\n=== SMART REGISTRATION ===" << endl;
+
+    string studentID, name, email, studentType, sectionID;
+    float gpa;
+
+    cin.ignore();
+    cout << "Student ID: ";
+    getline(cin, studentID);
+    cout << "Name: ";
+    getline(cin, name);
+    cout << "Email: ";
+    getline(cin, email);
+    cout << "Type (Regular/Scholarship/Exchange): ";
+    getline(cin, studentType);
+    cout << "GPA: ";
+    cin >> gpa;
+    cin.ignore();
+    cout << "Section ID: ";
+    getline(cin, sectionID);
+
+    ifstream sections("sections.txt");
+    string line;
+    bool found = false;
+    string venueID, timeSlot;
+
+    while (getline(sections, line))
+    {
+        if (db.getField(line, 0) == sectionID)
+        {
+            venueID = db.getField(line, 3);
+            timeSlot = db.getField(line, 4);
+            found = true;
+            break;
+        }
+    }
+    sections.close();
+
+    if (!found)
+    {
+        cout << "Section not found!" << endl;
+        return;
+    }
+
+    int capacity = db.getVenueCap(venueID);
+    int enrolled = db.countStudentsInSection(sectionID);
+
+    if (enrolled >= capacity)
+    {
+        cout << "FAILED: Section is full!" << endl;
+        return;
+    }
+
+    if (db.checkConflict(studentID, timeSlot))
+    {
+        cout << "FAILED: Time conflict!" << endl;
+        return;
+    }
+
+    db.addRecord("Students.txt", studentID + "|" + name + "|" + studentType + "|" + to_string(gpa));
+    db.addStudentToSection(studentID, sectionID);
+
+    cout << "SUCCESS: Student registered!" << endl;
+}
+
+void teacherFeedback()
+{
+    cout << "\n=== TEACHER FEEDBACK ===" << endl;
+
+    string teacherID;
+    int rating;
+
+    cout << "Teacher ID: ";
+    cin >> teacherID;
+
+    ifstream file("Teachers.txt");
+    string line;
+    bool found = false;
+    string name, email;
+
+    while (getline(file, line))
+    {
+        if (db.getField(line, 0) == teacherID)
+        {
+            name = db.getField(line, 1);
+            email = db.getField(line, 2);
+            found = true;
+            break;
+        }
+    }
+    file.close();
+
+    if (!found)
+    {
+        cout << "Teacher not found!" << endl;
+        return;
+    }
+
+    cout << "Teacher: " << name << endl;
+    cout << "Rating (1-5): ";
+    cin >> rating;
+
+    if (rating >= 1 && rating <= 5)
+    {
+        Teacher teacher(teacherID, name, email);
+        teacher.addRating(rating);
+    }
+    else
+    {
+        cout << "Invalid rating!" << endl;
+    }
+}
+
+void gradingSystem()
+{
+    cout << "\n=== BIG RED BUTTON ===" << endl;
+
+    string sectionID;
+    cout << "Section ID: ";
+    cin >> sectionID;
+
+    db.inputMarks(sectionID);
+    cout << "Grades updated in assessments.txt" << endl;
+}
+
+void runScheduler()
+{
+    Scheduler s;
+    s.runAudit();
+}
+
+void polymorphismDemo()
+{
+    cout << "\n=== POLYMORPHISM DEMO ===" << endl;
+
+    RegularStudent regular("R001", "Ali Raza", "ali@fast.edu", 3.2);
+    ScholarshipStudent scholar("S001", "Sara Khan", "sara@fast.edu", 3.8);
+    ExchangeStudent exchange("E001", "John Smith", "john@fast.edu", 0);
+
+    regular.addCourse("CS101", 85);
+    regular.addCourse("CS102", 72);
+    regular.calculateGPA();
+
+    scholar.addCourse("CS101", 78);
+    scholar.addCourse("CS102", 68);
+    scholar.calculateGPA();
+
+    exchange.addCourse("CS101", 65);
+    exchange.addCourse("CS102", 55);
+    exchange.calculateGPA();
+
+    Student *students[3] = {&regular, &scholar, &exchange};
+
+    for (int i = 0; i < 3; i++)
+    {
+        students[i]->displayProfile();
+        students[i]->viewTranscript();
+        cout << "------------------------" << endl;
+    }
+
+    CoreCourse core("CS101", "Programming", "T001");
+    ElectiveCourse elective("CS201", "Web Dev", "T002");
+    LabCourse lab("CS301", "Networks Lab", "T001");
+
+    cout << "\nCourse Exam Durations:" << endl;
+    cout << "Core Course: " << core.getExamHours() << " hours" << endl;
+    cout << "Elective Course: " << elective.getExamHours() << " hours" << endl;
+    cout << "Lab Course: " << lab.getExamHours() << " hours" << endl;
 }

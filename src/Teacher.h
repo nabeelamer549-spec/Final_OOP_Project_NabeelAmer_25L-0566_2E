@@ -1,22 +1,24 @@
 #ifndef TEACHER_H
 #define TEACHER_H
-
 #include "AcademicEntity.h"
-#include "DatabaseManager.h"
 
-class Teacher : public AcademicEntity, public DatabaseManager
+class Teacher : public AcademicEntity
 {
 private:
-    string *courses;
-    int size;
-    float avgFeedback;
+    int ratings[100];
+    int ratingCount;
+    float avgRating;
+    float ratingSum;
+    string coursesTeaching[20];
+    int courseCount;
 
 public:
-    Teacher(string id = " ", string n = " ", string e = " ", string *c = nullptr, int s = 0);
-    void displayProfile() const override;
-    void addFeedback(int rating);
-    void feedback();
+    Teacher(string id = "", string n = "", string e = "");
     ~Teacher();
+    void addRating(int r);
+    float getAvgRating() const;
+    void addCourse(string courseID);
+    void displayProfile() const override;
+    void saveToFile();
 };
-
 #endif

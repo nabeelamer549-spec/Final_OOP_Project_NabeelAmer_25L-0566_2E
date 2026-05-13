@@ -1,3 +1,9 @@
-24L-0001|Nabeel|Scholarship|2.5|Probation
-24L-9999|Peer|Exchange|3.8|Pass
-23|Hasaan|123@gmail.com|0.0|Exchange
+2024001|Ayesha Khan|Regular|3.2
+2024002|Bilal Ahmed|Scholarship|3.7
+2024003|Fatima Ali|Regular|2.9
+2024004|Hamza Malik|Exchange|0.0
+2024005|Zara Tariq|Scholarship|3.5
+2024006|Usman Chaudhry|Regular|3.0
+2024007|Hina Aslam|Scholarship|2.4
+2024008|Omar Riaz|Exchange|0.0
+

@@ -1,1 +1,3 @@
-T001|Dr. Amer|4.8
+T001|Dr. Sarah Ahmed|sarah@fast.edu|4.66667|3|14
+T002|Prof. Bilal Hussain|bilal@fast.edu|4.2|3|12.6
+T003|Dr. Fatima Khan|fatima@fast.edu|0|0|0
